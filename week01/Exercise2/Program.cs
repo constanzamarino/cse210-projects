@@ -76,13 +76,6 @@ class Program
             Console.WriteLine("You haven't passed. Good luck for the next time, you can do it!");
         }
 
-        
-
-
-
-
-
-
 
     }  
     
