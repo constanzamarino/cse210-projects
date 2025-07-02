@@ -23,7 +23,7 @@ class Program
             }
             user_guess= int.Parse(Console.ReadLine());
         }
-        Console.WriteLine("Congrats! You have guessed it!");
+        Console.WriteLine("Good job, you have guessed it!");
 
 
     }
