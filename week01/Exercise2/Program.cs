@@ -73,7 +73,7 @@ class Program
 
         else
         {
-            Console.WriteLine("You haven't passed. Good luck for the next time, you can do it!");
+            Console.WriteLine("You haven't passed. Good luck for the next time! Remember...You can do it!");
         }
 
 
