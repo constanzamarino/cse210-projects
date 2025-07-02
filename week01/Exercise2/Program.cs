@@ -11,6 +11,7 @@ class Program
 
         string letter_grade = "";
 
+
         if (percentage >= 90)
         {
             letter_grade = "A";
@@ -37,7 +38,33 @@ class Program
             letter_grade = "F";
         }
 
-        Console.WriteLine($"Your final grade is {letter_grade}.");
+        int last_digit = percentage % 10;
+        string sign = "";
+
+        if (letter_grade != "F")
+        
+        if (last_digit >= 7)
+            {
+                sign = "+";
+
+                if (letter_grade == "A" && last_digit >= 7)
+                {
+                    sign = "";
+                }
+
+            }
+
+            else if (last_digit < 3)
+            {
+                sign = "-";
+            }
+
+            else
+            {
+                sign = "";
+            }
+
+        Console.WriteLine($"Your final grade is {letter_grade}{sign}.");
 
         if (percentage >= 70)
         {
@@ -48,6 +75,10 @@ class Program
         {
             Console.WriteLine("You haven't passed. Good luck for the next time, you can do it!");
         }
+
+        
+
+
 
 
 
