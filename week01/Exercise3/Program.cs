@@ -31,7 +31,7 @@ class Program
                 User_guess = int.Parse(Console.ReadLine());
                 attempts++;
             }
-            Console.WriteLine("Congratulations! You've guessed the magic number!");
+            Console.WriteLine("Congratulations! You've guessed the number!");
             Console.WriteLine($"It took you {attempts} guesses.");
 
             Console.WriteLine("Do you want to keep playing? (YES/NO)");
@@ -40,9 +40,6 @@ class Program
         }
 
         Console.WriteLine("Thanks for playing! Hope to see you soon ;) ");
-
-        
-        
 
     }
 }
