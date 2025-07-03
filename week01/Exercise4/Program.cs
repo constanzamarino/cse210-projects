@@ -58,4 +58,17 @@ class Program
 
         }
         Console.WriteLine($"The smallest number from the list is {smallest_number}.");
+
+        numbers.Sort();
+        
+        Console.WriteLine($"The sorted list is:");
+
+        foreach (int number in numbers)
+
+        {
+            Console.WriteLine(number);
+        }
+
+         
+
 }   }
