@@ -40,6 +40,6 @@ class Program
     }
     static void DisplayResult(string user_name, int squared_number)
     {
-        Console.WriteLine($"{user_name}, your favorite number has been squared. Your squared number is {squared_number}");
+        Console.WriteLine($"{user_name}, your favorite number has been squared. Your squared number is {squared_number}.");
     }
 }
