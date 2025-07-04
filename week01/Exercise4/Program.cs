@@ -44,7 +44,7 @@ class Program
 
         }
 
-        Console.WriteLine($"The largest number is {max_number}.");
+        Console.WriteLine($"The largest number from the list is {max_number}.");
 
         int smallest_positive_number = numbers[0];
         foreach (int number in numbers)
