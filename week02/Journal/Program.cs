@@ -1,4 +1,5 @@
 using System;
+using System.Security.Cryptography.X509Certificates;
 
 class Program
 {
@@ -15,7 +16,7 @@ class Program
 
         if (user_choice == 1)
         {
-
+            
         }
 
         else if (user_choice == 2)
@@ -30,8 +31,10 @@ class Program
 
         else if (user_choice == 4)
         {
-            Console.WriteLine("Enter your filename to save your journal:");
+            Console.WriteLine("Enter the name of your file to save the journal:");
             string user_filename = Console.ReadLine();
+
+
 
         }
 
