@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 
 public class Journal
@@ -20,10 +21,11 @@ public class Journal
         _entries.Add(newEntry);
 
     }
+    
 
-    public void Display()
+    public void DisplayJournal()
     {
-        
+
         foreach (Entry entry in _entries)
         {
             entry.Display();
@@ -31,6 +33,7 @@ public class Journal
     }
 
     public static void SaveToFile(List<Entry> _entries)
+
     {
         string filename = "";
         using (StreamWriter file = new StreamWriter(filename))
@@ -41,11 +44,12 @@ public class Journal
                 file.WriteLine($"{newEntry._date}~~{newEntry._randomPrompt}~~{newEntry._entryText}");
             }
         }
-        
+        Console.WriteLine($"Journal saved succesfully to {filename}.");
     }
 
     public void LoadFromFile()
     {
+        
 
     }
 }
