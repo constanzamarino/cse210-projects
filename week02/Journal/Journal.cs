@@ -9,13 +9,17 @@ public class Journal
     public void AddEntry()
     {
         string date = DateTime.Now.ToShortDateString();
+        
+        PromptGenerator generator = new PromptGenerator();
+        generator.LoadRandomPrompt();
+        string _randomPrompt = generator.GetRandomPrompt();
 
         Console.WriteLine("");
         string text = Console.ReadLine();
 
         Entry newEntry = new Entry();
         newEntry._date = date;
-        newEntry._randomPrompt = "";
+        newEntry._randomPrompt = _randomPrompt;
         newEntry._entryText = text;
 
         _entries.Add(newEntry);
