@@ -10,6 +10,6 @@ public class Entry
 
     public void Display()
     {
-        Console.WriteLine($"{_date}\n{_randomPrompt}\n{_entryText}");
+        Console.WriteLine($"{_date}\n{_randomPrompt}\n{_entryText}\n");
     }
 }
