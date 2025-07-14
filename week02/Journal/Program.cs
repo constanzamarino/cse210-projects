@@ -23,9 +23,8 @@ class Program
 
             if (user_choice == 1)
             {
-
                 journal.AddEntry();
-                
+
             }
 
             else if (user_choice == 2)
@@ -40,15 +39,13 @@ class Program
 
             else if (user_choice == 4)
             {
-                Console.WriteLine("Enter the name of your file to save the journal:");
-                string filename = Console.ReadLine();
-
+                journal.SaveToFile();
 
             }
 
             else
             {
-                Console.WriteLine("");
+                Console.WriteLine("I don't understand that answer.");
             }
     }
 }
