@@ -8,8 +8,12 @@ public class Journal
 
     public void AddEntry()
     {
+
         string date = DateTime.Now.ToShortDateString();
-        
+
+        Console.WriteLine("Enter your name:");
+        string user_name = Console.ReadLine();
+
         PromptGenerator generator = new PromptGenerator();
         generator.LoadRandomPrompt();
         string _randomPrompt = generator.GetRandomPrompt();
@@ -19,13 +23,15 @@ public class Journal
 
         Entry newEntry = new Entry();
         newEntry._date = date;
+        newEntry._userName = user_name;
         newEntry._randomPrompt = _randomPrompt;
         newEntry._entryText = text;
+
 
         _entries.Add(newEntry);
 
     }
-    
+
 
     public void DisplayJournal()
     {
@@ -34,12 +40,14 @@ public class Journal
         {
             entry.Display();
         }
+
     }
 
-    public static void SaveToFile(List<Entry> _entries)
+    public void SaveToFile()
 
     {
-        string filename = "";
+        Console.WriteLine("Enter the name of your file to save the journal:");
+        string filename = Console.ReadLine();
         using (StreamWriter file = new StreamWriter(filename))
 
         {
@@ -53,7 +61,25 @@ public class Journal
 
     public void LoadFromFile()
     {
+
+        Console.WriteLine("Enter the name of your journal's file to load it:");
+        string filename = Console.ReadLine();
+        string[] journal_lines = System.IO.File.ReadAllLines(filename);
+
+        foreach (string journal_line in journal_lines)
+        {
+            string[] parts = journal_line.Split();
+
+            string _date = parts[0];
+            string _userName = parts[1];
+            string _randomPrompt = parts[2];
+            string _entryText = parts[3];
+            
+        }
+
         
 
     }
+
+    
 }
