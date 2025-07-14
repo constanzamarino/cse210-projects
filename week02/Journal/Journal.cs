@@ -15,10 +15,10 @@ public class Journal
         string user_name = Console.ReadLine();
 
         PromptGenerator generator = new PromptGenerator();
-        generator.LoadRandomPrompt();
         string _randomPrompt = generator.GetRandomPrompt();
 
-        Console.WriteLine();
+        Console.WriteLine($"{_randomPrompt}");
+        Console.WriteLine($"Your entry: ");
         string text = Console.ReadLine();
 
         Entry newEntry = new Entry();
@@ -26,19 +26,23 @@ public class Journal
         newEntry._userName = user_name;
         newEntry._randomPrompt = _randomPrompt;
         newEntry._entryText = text;
-
-
         _entries.Add(newEntry);
+       
 
     }
 
 
     public void DisplayJournal()
     {
-        foreach (Entry entry in _entries)
+        if (_entries.Count == 0)
         {
-            entry.Display();
+            Console.WriteLine("Your journal is empty.");
+            return;
         }
+        foreach (Entry entry in _entries)
+            {
+                entry.Display();
+            }
 
     }
 
@@ -50,9 +54,9 @@ public class Journal
         using (StreamWriter file = new StreamWriter(filename))
 
         {
-            foreach (Entry newEntry in _entries)
+            foreach (Entry entry in _entries)
             {
-                file.WriteLine($"{newEntry._date}~~{newEntry._userName}~~{newEntry._randomPrompt}~~{newEntry._entryText}");
+                file.WriteLine($"{entry._date}~~{entry._userName}~~{entry._randomPrompt}~~{entry._entryText}");
             }
         }
         Console.WriteLine($"Journal saved succesfully to {filename}.");
@@ -61,9 +65,15 @@ public class Journal
 
     public void LoadFromFile()
     {
-
         Console.WriteLine("Enter the name of your journal's file to load it:");
         string filename = Console.ReadLine();
+
+        if (!File.Exists(filename))
+        {
+            Console.WriteLine("File not found. Please, check if the file name is the correct one and try again.");
+            return;
+        }
+
         string[] journal_lines = System.IO.File.ReadAllLines(filename);
 
         foreach (string journal_line in journal_lines)
