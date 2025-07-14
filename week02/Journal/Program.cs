@@ -14,38 +14,40 @@ class Program
         Console.WriteLine("3. Load journal ");
         Console.WriteLine("4. Save journal");
         Console.WriteLine("5. Quit");
-        string user_input = Console.ReadLine();
-        int user_choice = int.Parse(user_input);
-
+       
         Journal journal = new Journal();
+        int user_choice = 0;
 
         while (user_choice != 5)
 
-            if (user_choice == 1)
-            {
-                journal.AddEntry();
+         Console.WriteLine("Enter your choice:");
+         string user_input = Console.ReadLine();
+         user_choice = int.Parse(user_input);
 
-            }
+        if (user_choice == 1)
+        {
+            journal.AddEntry();
+        }
 
-            else if (user_choice == 2)
-            {
-                journal.DisplayJournal();
-            }
+        else if (user_choice == 2)
+        {
+            journal.DisplayJournal();
+        }
 
-            else if (user_choice == 3)
-            {
-                journal.LoadFromFile();
-            }
+        else if (user_choice == 3)
+        {
+            journal.LoadFromFile();
+        }
 
-            else if (user_choice == 4)
-            {
-                journal.SaveToFile();
+        else if (user_choice == 4)
+        {
+            journal.SaveToFile();
 
-            }
+        }
 
-            else
-            {
-                Console.WriteLine("I don't understand that answer.");
-            }
+        else
+        {
+            Console.WriteLine("I don't understand that answer.");
+        }
     }
 }

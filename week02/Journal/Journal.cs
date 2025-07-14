@@ -18,7 +18,7 @@ public class Journal
         generator.LoadRandomPrompt();
         string _randomPrompt = generator.GetRandomPrompt();
 
-        Console.WriteLine("");
+        Console.WriteLine();
         string text = Console.ReadLine();
 
         Entry newEntry = new Entry();
@@ -35,7 +35,6 @@ public class Journal
 
     public void DisplayJournal()
     {
-
         foreach (Entry entry in _entries)
         {
             entry.Display();
@@ -53,11 +52,12 @@ public class Journal
         {
             foreach (Entry newEntry in _entries)
             {
-                file.WriteLine($"{newEntry._date}~~{newEntry._randomPrompt}~~{newEntry._entryText}");
+                file.WriteLine($"{newEntry._date}~~{newEntry._userName}~~{newEntry._randomPrompt}~~{newEntry._entryText}");
             }
         }
         Console.WriteLine($"Journal saved succesfully to {filename}.");
     }
+
 
     public void LoadFromFile()
     {
@@ -68,16 +68,27 @@ public class Journal
 
         foreach (string journal_line in journal_lines)
         {
-            string[] parts = journal_line.Split();
+
+            string[] parts = journal_line.Split("~~");
 
             string _date = parts[0];
             string _userName = parts[1];
             string _randomPrompt = parts[2];
             string _entryText = parts[3];
-            
-        }
 
-        
+            Entry loadEntry = new Entry();
+            loadEntry._date = _date;
+            loadEntry._userName = _userName;
+            loadEntry._randomPrompt = _randomPrompt;
+            loadEntry._entryText = _entryText;
+
+            _entries.Add(loadEntry);
+
+
+        }
+        Console.WriteLine($"Journal loaded successfully from {filename}.");
+
+
 
     }
 
