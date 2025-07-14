@@ -57,7 +57,7 @@ class Program
 
             else if (user_choice == 5)
             {
-                Console.WriteLine("Closing MyJournal...");
+                Console.WriteLine("MyJournal has been closed...");
             }
 
             else

@@ -60,6 +60,8 @@ public class Journal
             }
         }
         Console.WriteLine($"Journal saved succesfully to {filename}.");
+
+        //Fix this
     }
 
 
