@@ -1,3 +1,7 @@
+// I added a !tryParse code to check if user_input is not a valid integer. I also added a code to ask the user to enter a name
+// before writing a new entry, which will be saved and loaded with the date, prompt and entry. Finally, in the journal class
+// in the LoadFromFile method, I added a !File. Exists code to check if the user file exists.
+
 using System;
 using System.IO;
 using System.Collections.Generic;
@@ -7,7 +11,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        
+        Console.WriteLine("Welcome to MyJournal Program!");
 
         Journal journal = new Journal();
 
@@ -16,11 +20,11 @@ class Program
 
         while (user_choice != 5)
         {
-            Console.WriteLine("Welcome to MyJournal Program!");
+            
             Console.WriteLine("Select one of the options presented below:");
             Console.WriteLine("1. Write a new entry");
             Console.WriteLine("2. Display journal");
-            Console.WriteLine("3. Load journal ");
+            Console.WriteLine("3. Load journal");
             Console.WriteLine("4. Save journal");
             Console.WriteLine("5. Quit");
 
@@ -57,7 +61,7 @@ class Program
 
             else if (user_choice == 5)
             {
-                Console.WriteLine("MyJournal has been closed...");
+                Console.WriteLine("Thanks for using MyJournal!");
             }
 
             else

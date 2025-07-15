@@ -18,7 +18,7 @@ public class Journal
         string _randomPrompt = generator.GetRandomPrompt();
 
         Console.WriteLine($"{_randomPrompt}");
-        Console.WriteLine($"Your entry: ");
+        Console.WriteLine("");
         string text = Console.ReadLine();
 
         Entry newEntry = new Entry();
@@ -83,8 +83,7 @@ public class Journal
 
             string[] parts = journal_line.Split("~~");
 
-            if (parts.Length == 4)
-            {
+            
             string _date = parts[0];
             string _userName = parts[1];
             string _randomPrompt = parts[2];
@@ -97,7 +96,7 @@ public class Journal
             loadEntry._entryText = _entryText;
 
             _entries.Add(loadEntry);
-            } 
+            
 
         }
         Console.WriteLine($"Journal loaded successfully from {filename}.");
