@@ -5,16 +5,16 @@ class Program
     static void Main(string[] args)
     {
         Console.WriteLine("Welcome to the ScriptureMemorizer program!");
-        Console.WriteLine("Press enter to continue. Type 'quit' as per your preference or after you are done. ");
+        Console.WriteLine("Type 'enter' to continue. Type 'quit' after you are done.");
         string user_choice = Console.ReadLine();
 
 
 
         while (user_choice != "quit".ToLower())
         {
-            if (user_choice == "")
+            if (user_choice == "enter")
             {
-
+                
             }
 
             else if (user_choice == "quit")
