@@ -18,15 +18,15 @@ class Program
             Console.WriteLine("Type 'enter' to continue. Type 'quit' after you are done.");
             string user_choice = Console.ReadLine();
 
-            if (user_choice == "enter".ToLower())
+           if (user_choice == "enter".ToLower())
             {
                 
             }
 
-            else if (user_choice == "quit".ToLower())
-            {
-                break;
-            }
+          else if (user_choice == "quit".ToLower())
+           {
+               break;
+           }
 
             scripture.HideRandomWords(2);
         }
