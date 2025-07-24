@@ -20,7 +20,7 @@ class Program
 
            if (user_choice == "enter".ToLower())
             {
-                
+                scripture.GetDisplayText();
             }
 
           else if (user_choice == "quit".ToLower())
