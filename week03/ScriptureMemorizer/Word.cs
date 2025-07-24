@@ -13,7 +13,7 @@ public class Word
 
     public void Hide()
     {
-
+        
     }
 
     public void Show()
@@ -21,7 +21,7 @@ public class Word
 
     }
 
-    public bool Hidden()
+    public bool IsHidden()
     {
 
     }
