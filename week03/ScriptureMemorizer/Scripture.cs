@@ -41,10 +41,7 @@ public class Scripture
                 _words[index].Hide();
                 _hiddenCount++;
         }
-
        }
-
-
     }
 
     public string GetDisplayText()
@@ -60,7 +57,15 @@ public class Scripture
 
     public bool CompletelyHidden()
     {
-        
+        foreach (word in _words)
+        {
+            if(!word.IsHidden())
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 
 }

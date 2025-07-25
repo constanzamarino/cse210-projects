@@ -14,12 +14,14 @@ class Program
         while (scripture.CompletelyHidden())
         {
             Console.Clear();
+            Console.WriteLine(reference.GetDisplayText())
             Console.WriteLine(scripture.GetDisplayText());
             Console.WriteLine("Type 'enter' to continue. Type 'quit' after you are done.");
             string user_choice = Console.ReadLine();
 
            if (user_choice == "enter".ToLower())
             {
+                
                 scripture.GetDisplayText();
             }
 
