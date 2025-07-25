@@ -15,6 +15,6 @@ public class Entry
 
     public void Display()
     {
-        Console.WriteLine($"By: {_userName}\n{_date}\n{_randomPrompt}\n{_entryText}\n");
+        Console.WriteLine($"By: {_userName}-{_date}\n{_randomPrompt}\n{_entryText}\n");
     }
 }

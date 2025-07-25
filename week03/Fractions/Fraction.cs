@@ -17,16 +17,15 @@ public class Fraction
         _bottom = 1;
     }
 
-    public Fraction(int _top, int _bottom)
+    public Fraction(int top, int bottom)
     {
         _top = top;
         _bottom = bottom;
-
     }
-
-    public void GetTop()
+    
+    public int GetTop()
     {
-        return top;
+        return _top;
     }
 
     public void SetTop(int top)
@@ -34,9 +33,9 @@ public class Fraction
         _top = top;
     }
 
-    public void GetBottom()
+    public int GetBottom()
     {
-        return bottom;
+        return _bottom;
     }
 
     public void SetBottom(int bottom)
