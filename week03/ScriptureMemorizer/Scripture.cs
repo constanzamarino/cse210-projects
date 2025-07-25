@@ -55,7 +55,7 @@ public class Scripture
         {
             _displayWords.Add(word.GetDisplayText());
         }
-        return string.Join("", _displayWords);
+        return string.Join(" ", _displayWords);
 
     }
 
