@@ -3,10 +3,10 @@ using System;
 public class RandomScriptureGenerator
 
 {
-    private List<Scripture> _scriptures;
-    private Random _randomScripture;
+    private List<Scripture> _scriptures = new List<Scripture>();
     public RandomScriptureGenerator()
     {
+
         _scriptures.Add(new Scripture(new Reference("John", 3, 16, 17), "For God so loved the world, that he gave his only begotten Son, that whosoever believeth in him should not perish, but have everlasting life.\nFor God sent not his Son into the world to condemn the world; but that the world through him might be saved."));
         _scriptures.Add(new Scripture(new Reference("Proverbs", 3, 5, 6), "Trust in the Lord with all thine heart; and lean not unto thine own understanding.\nIn all thy ways acknowledge him, and he shall direct thy paths."));
         _scriptures.Add(new Scripture(new Reference("James", 1, 5, 6), "If any of you lack wisdom, let him ask of God, that giveth to all men liberally, and upbraideth not; and it shall be given him.\nBut let him ask in faith, nothing wavering. For he that wavereth is like a wave of the sea driven with the wind and tossed."));
@@ -20,6 +20,7 @@ public class RandomScriptureGenerator
 
     public Scripture GetRandomScripture()
     {
+        Random _randomScripture = new Random();
         int index = _randomScripture.Next(_scriptures.Count);
         return _scriptures[index];
     }
