@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 
 public class Scripture
@@ -38,8 +37,13 @@ public class Scripture
 
         if (!_words[index].IsHidden())
         {
-                _words[index].Hide();
-                _hiddenCount++;
+            _words[index].Hide();
+            _hiddenCount++;
+        }
+
+        if (CompletelyHidden())
+        {
+            break;
         }
        }
     }
@@ -57,7 +61,7 @@ public class Scripture
 
     public bool CompletelyHidden()
     {
-        foreach (word in _words)
+        foreach (Word word in _words)
         {
             if(!word.IsHidden())
             {

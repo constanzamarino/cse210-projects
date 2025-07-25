@@ -11,21 +11,16 @@ class Program
         Console.WriteLine("Welcome to the Scripture Memorizer program!");
 
 
-        while (scripture.CompletelyHidden())
+        while (!scripture.CompletelyHidden())
         {
             Console.Clear();
-            Console.WriteLine(reference.GetDisplayText())
+            Console.WriteLine(reference.GetDisplayText());
             Console.WriteLine(scripture.GetDisplayText());
-            Console.WriteLine("Type 'enter' to continue. Type 'quit' after you are done.");
-            string user_choice = Console.ReadLine();
+            Console.WriteLine("\nType 'enter' to continue. Type 'quit' after you are done.");
+            string user_choice = Console.ReadLine().ToLower();
 
-           if (user_choice == "enter".ToLower())
-            {
-                
-                scripture.GetDisplayText();
-            }
 
-          else if (user_choice == "quit".ToLower())
+           if (user_choice == "quit")
            {
                break;
            }

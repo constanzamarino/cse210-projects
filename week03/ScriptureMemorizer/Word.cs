@@ -8,6 +8,7 @@ public class Word
     public Word(string text)
     {
         _text = text;
+        _hidden = false;
 
     }
 
