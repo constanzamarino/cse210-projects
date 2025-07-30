@@ -1,6 +1,5 @@
 using System;
 
-
 public class Comment
 {
     public string _userName;
@@ -9,7 +8,8 @@ public class Comment
 
     public void DisplayAllComments()
     {
-        
-    }
+        Console.WriteLine($"{_userName}\n{_commentText}");
+    } 
 
+   
 }
