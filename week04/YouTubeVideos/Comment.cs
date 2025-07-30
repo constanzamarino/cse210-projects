@@ -6,10 +6,11 @@ public class Comment
 
     public string _commentText;
 
+
     public void DisplayAllComments()
     {
         Console.WriteLine($"{_userName}\n{_commentText}");
     } 
-
+    
    
 }
