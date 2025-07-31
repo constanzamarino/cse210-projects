@@ -2,7 +2,7 @@ using System;
 
 public class Product
 {
-    private string _productName;
+    private string _productName = "";
     private int _productID;
 
     private float _price;
@@ -15,7 +15,7 @@ public class Product
         _productID = ID;
         _price = price;
         _productQuantity = quantity;
-        
+
     }
 
     public float GetTotalCost()
@@ -23,4 +23,6 @@ public class Product
         float totalcost = _price * _productQuantity;
         return totalcost;
     }
+    
+    
 }
