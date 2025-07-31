@@ -27,12 +27,12 @@ public class Order
 
     public string GetPackingLabel()
     {
-        //Add code
+        
     }
 
     public string GetShippingLabel()
     {
-        //Add code
+        
     }
 
   
