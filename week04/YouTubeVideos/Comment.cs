@@ -9,7 +9,7 @@ public class Comment
 
     public void DisplayAllComments()
     {
-        Console.WriteLine($"{_userName}\n{_commentText}");
+        Console.WriteLine($"{_userName}: {_commentText}");
     } 
     
    

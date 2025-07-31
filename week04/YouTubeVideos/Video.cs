@@ -13,41 +13,41 @@ public class Video
     public List<Comment> _comments = new List<Comment>();
     public void StoreVideoComments()
     {
-        string filename = "stored_comments.txt";
+        string filename = Path.Combine(Environment.CurrentDirectory, "../../../../../stored_comments.txt");
         using (StreamWriter file = new StreamWriter(filename, append : true))
         {
 
-            file.WriteLine($"{_videoTitle}");
-            file.WriteLine($"{_videoAuthor}");
-            file.WriteLine($"{_videoLength}");
+            file.WriteLine($"Title: {_videoTitle}");
+            file.WriteLine($"By: {_videoAuthor}");
+            file.WriteLine($"Length: {_videoLength} minutes");
             file.WriteLine($"Comments");
             foreach (Comment comment in _comments)
             {
                 file.WriteLine($"{comment._userName}: {comment._commentText}");
             }
 
-            file.WriteLine();
+            file.WriteLine("\n-----------------------------\n");
         }
     }
 
 
     public void GetNumberComments()
     {
-        int numberComments = _comments.Count;
-        Console.WriteLine($"{numberComments} comments:");
+        Console.WriteLine($"Total Comments: {_comments.Count}");
         
     }
 
     public void DisplayAll()
     {
         Console.WriteLine($"{_videoTitle}");
-        Console.WriteLine($"{_videoAuthor}");
-        Console.WriteLine($"{_videoLength} minutes");
-       
+        Console.WriteLine($"By: {_videoAuthor}");
+        Console.WriteLine($"{_videoLength} minutes\n");
+        Console.WriteLine($"Comments: ");
 
         foreach (Comment comment in _comments)
         {
             comment.DisplayAllComments();
+            Console.WriteLine();
         }
 
     }
