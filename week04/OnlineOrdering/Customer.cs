@@ -2,7 +2,7 @@ using System;
 
 public class Customer
 {
-    private string _customerName;
+    private string _customerName= "";
 
     private Address _customerAddress;
 
