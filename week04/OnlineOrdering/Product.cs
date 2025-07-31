@@ -9,13 +9,18 @@ public class Product
 
     private int _productQuantity;
 
-    public Product(string name, float price, int quantity)
+    public Product(string name, int ID, float price, int quantity)
     {
-
+        _productName = name;
+        _productID = ID;
+        _price = price;
+        _productQuantity = quantity;
+        
     }
 
     public float GetTotalCost()
     {
-        
+        float totalcost = _price * _productQuantity;
+        return totalcost;
     }
 }
