@@ -18,6 +18,16 @@ public class Product
 
     }
 
+    public string GetProductName()
+    {
+        return _productName;
+    }
+
+    public int GetProductID()
+    {
+        return _productID;
+    }
+
     public float GetTotalCost()
     {
         float totalcost = _price * _productQuantity;
