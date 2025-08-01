@@ -29,7 +29,7 @@ public class Address
         {
             return _country != "USA";
         }
-        
+
     }
 
     public string GetDisplayAll()
