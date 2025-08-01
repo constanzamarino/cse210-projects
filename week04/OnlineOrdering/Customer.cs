@@ -12,9 +12,21 @@ public class Customer
         _customerAddress = address;
     }
 
+    public string GetCustomerName()
+    {
+        return _customerName;
+    }
+
+    public Address GetCustomerAddress()
+    {
+        return _customerAddress;
+    }
+
+
     public bool LivesInUSA()
     {
         return _customerAddress.IsFromUSA();
+
     }
 
 
