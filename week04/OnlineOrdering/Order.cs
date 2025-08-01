@@ -8,9 +8,9 @@ public class Order
     private List<Product> _products;
     private Customer _customer;
 
-    public Order(List<Product> products, Customer customer)
+    public Order(Customer customer)
     {
-        _products = products;
+        _products = new List<Product>();
         _customer = customer;
     }
 
@@ -49,7 +49,11 @@ public class Order
 
 
     }
-    
+
+    public void AddProducts(Product product)
+    {
+        _products.Add(product);
+    }
 
   
 }
