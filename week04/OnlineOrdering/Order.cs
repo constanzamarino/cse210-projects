@@ -22,7 +22,18 @@ public class Order
         {
             total += product.GetTotalCost();
         }
+            if (_customer.LivesInUSA())
+            {
+                return total += 5;
 
+            }
+            else if (!_customer.LivesInUSA())
+            {
+                return total += 35;
+
+            }
+
+        
         return total;
     }
 
@@ -46,10 +57,9 @@ public class Order
         shippinglabel += $"{_customer.GetCustomerAddress().GetDisplayAll()}\n";
 
         return shippinglabel;
-
-
+        
     }
-
+     
     public void AddProducts(Product product)
     {
         _products.Add(product);
