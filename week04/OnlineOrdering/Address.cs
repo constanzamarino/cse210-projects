@@ -20,15 +20,7 @@ public class Address
 
     public bool IsFromUSA()
     {
-        if (_country == "USA")
-        {
-            return _country.ToUpper() == "USA";
-        }
-
-        else
-        {
-            return _country != "USA";
-        }
+        return _country.ToUpper() == "USA";
 
     }
 
