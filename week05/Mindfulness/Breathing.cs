@@ -2,13 +2,13 @@ using System;
 
 public class Breathing
 {
-    public Breathing()
+    public Breathing() 
     {
 
 
     }
 
-    public RunBreathingActivity()
+    public void RunBreathingActivity()
     {
         
     }
