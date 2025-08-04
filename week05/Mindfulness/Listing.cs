@@ -2,14 +2,26 @@ using System;
 
 public class Listing
 {
+    private int _count;
     private List<string> _prompts;
-    private List<string> _questions;
 
-    public Listing(List<string> prompts, List<string> questions)
+    public Listing(string name, string description, int timeDuration, int count, List<string> prompts)
     {
+        _count = count;
         _prompts = prompts;
-        _questions = questions;
     }
+
+    public void RunListingActivity()
+    {
+
+    }
+
+    public List<string> GetListFromUser()
+    {
+        
+    }
+
+
 
     
 }

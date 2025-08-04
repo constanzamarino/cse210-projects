@@ -2,7 +2,7 @@ using System;
 
 public class Breathing
 {
-    public Breathing() 
+    public Breathing(string name, string description, int timeDuration) : base()
     {
 
 

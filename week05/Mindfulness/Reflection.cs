@@ -2,18 +2,33 @@ using System;
 
 public class Reflection
 {
-    private int _duration;
+    private List<string> _questions;
 
     private List<string> _randomPrompts;
 
-    public Reflection(int duration, List <string> randomPrompts)
+    public Reflection(List<string> questions, List<string> randomPrompts)
     {
-        _duration = duration;
+        _questions = questions;
         _randomPrompts = randomPrompts;
 
     }
 
     public void RunReflectionActivity()
+    {
+
+    }
+
+    public void GetRandomPrompt()
+    {
+
+    }
+
+    public void DisplayPrompt()
+    {
+
+    }
+
+    public void DisplayQuestions()
     {
 
     }
