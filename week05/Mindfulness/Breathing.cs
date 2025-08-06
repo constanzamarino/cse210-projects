@@ -1,8 +1,8 @@
 using System;
 
-public class Breathing
+public class Breathing : Activity
 {
-    public Breathing(string name, string description, int timeDuration) : base()
+    public Breathing(string name, string description, int timeDuration) : base(name, description, timeDuration)
     {
 
 
