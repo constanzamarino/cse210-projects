@@ -5,10 +5,10 @@ public class Listing : Activity
     private int _count;
     private List<string> _prompts;
 
-    public Listing(string name, string description, int timeDuration, int count, List<string> prompts) :base(name, description, timeDuration)
+    public Listing(string name, string description, int timeDuration, int count) : base(name, description, timeDuration)
     {
+        _prompts = new List<string>();
         _count = count;
-        _prompts = prompts;
     }
 
     public void RunListingActivity()

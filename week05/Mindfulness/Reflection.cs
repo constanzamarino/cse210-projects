@@ -6,10 +6,10 @@ public class Reflection : Activity
 
     private List<string> _randomPrompts;
 
-    public Reflection(string name, string description, int timeDuration, List<string> questions, List<string> randomPrompts) : base(name, description, timeDuration)
+    public Reflection(string name, string description, int timeDuration) : base(name, description, timeDuration)
     {
-        _questions = questions;
-        _randomPrompts = randomPrompts;
+        _questions = new List<string>();
+        _randomPrompts = new List<string>();
 
     }
 
@@ -18,21 +18,28 @@ public class Reflection : Activity
 
     }
 
+    public string GetQuestions()
+    {
+        Random aRandomQuestion = new Random();
+        int index = aRandomQuestion.Next(_questions.Count);
+        return _questions[index];
+    }
+
     public string GetRandomPrompt()
     {
         Random aRandomPrompt = new Random();
-        int index = aRandomPrompt.Next(_randomPrompts.Count);
-        return _randomPrompts[index];
+        int index2 = aRandomPrompt.Next(_randomPrompts.Count);
+        return _randomPrompts[index2];
     }
 
     public void DisplayPrompt()
     {
-
+        Console.WriteLine();
     }
 
     public void DisplayQuestions()
     {
-
+        Console.WriteLine();
     }
 
 
