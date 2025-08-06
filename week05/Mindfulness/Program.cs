@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Channels;
+using System.Collections.Generic;
 
 class Program
 {
@@ -12,6 +13,10 @@ class Program
         while (user_choice != 4)
 
         {
+            Breathing breathingActivity = new Breathing("", "", 0);
+            Reflection reflectionActivity = new Reflection("", "", 0);
+            Listing listingActivity = new Listing("", "", 0, 0);
+
             Console.WriteLine("Menu:");
             Console.WriteLine("\n1.Breathing Activity\n2.Reflection Activity\n3.Listing Activity\n4.Quit\n");
             Console.WriteLine("Please, select an option from the menu by entering its corresponding number:");
@@ -24,17 +29,17 @@ class Program
 
             if (user_choice == 1)
             {
-
+                breathingActivity.RunBreathingActivity();
             }
 
             else if (user_choice == 2)
             {
-
+                reflectionActivity.RunReflectionActivity();
             }
 
             else if (user_choice == 3)
             {
-
+                listingActivity.RunListingActivity();
             }
 
             else
