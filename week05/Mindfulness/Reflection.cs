@@ -1,4 +1,6 @@
 using System;
+using System.Threading.Channels;
+using System.IO;
 
 public class Reflection : Activity
 {
@@ -34,12 +36,37 @@ public class Reflection : Activity
 
     public void DisplayPrompt()
     {
-        Console.WriteLine();
+        Console.WriteLine(_randomPrompts);
     }
 
     public void DisplayQuestions()
     {
-        Console.WriteLine();
+        Console.WriteLine(_questions);
+    }
+
+    public void SaveReflectionActivity()
+    {
+        Console.WriteLine("Enter the name of your file to save the Reflection Activity: ");
+        string userFilename = Console.ReadLine();
+
+        using (StreamWriter userFile = new StreamWriter(userFilename))
+        {
+            DateTime activityDate = new DateTime();
+            userFile.WriteLine("Date: " + activityDate.ToString("yyyy-MM-dd HH:mm"));
+            userFile.WriteLine("Questions:");
+            foreach (string questions in _questions)
+            {
+                userFile.Write(questions);
+            }
+
+            userFile.WriteLine("Prompts:");
+            foreach (string aRandomPrompt in _randomPrompts)
+            {
+                userFile.Write(aRandomPrompt);
+            }
+     
+            
+        }
     }
 
 
