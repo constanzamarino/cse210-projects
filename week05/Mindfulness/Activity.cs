@@ -23,12 +23,12 @@ public class Activity
 
     public void DisplayStartingMessage()
     {
-        
+
     }
 
     public void DisplayEndingMessage()
     {
-        
+
     }
 
     public void ShowCountDown(int timeInSeconds)
@@ -36,13 +36,13 @@ public class Activity
         Console.WriteLine("In how long do you want to spend in this session? (Seconds)");
         string user_time_choice = Console.ReadLine();
         timeInSeconds = int.Parse(user_time_choice);
-        
+
         for (int i = 5; 1 > 0; i--)
         {
-            
+
             Thread.Sleep(timeInSeconds);
         }
-     
+
 
     }
 
@@ -62,6 +62,22 @@ public class Activity
             Console.WriteLine(s);
             Thread.Sleep(timeInSeconds);
         }
-        
+
+
+
+
+
+    public DateTime GetActivityDate()
+    {
+        return DateTime.Now;
+
     }
+
+    public void DisplayActivityDate()
+    {
+        Console.WriteLine(DateTime.Now);
+    }
+
+        
+    
 }
