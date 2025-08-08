@@ -23,12 +23,12 @@ public class Activity
 
     public void DisplayStartingMessage()
     {
-
+        Console.WriteLine("");
     }
 
     public void DisplayEndingMessage()
     {
-
+        Console.WriteLine("");
     }
 
     public void ShowCountDown(int timeInSeconds)
@@ -63,10 +63,7 @@ public class Activity
             Thread.Sleep(timeInSeconds);
         }
 
-
-
-
-
+    }
     public DateTime GetActivityDate()
     {
         return DateTime.Now;

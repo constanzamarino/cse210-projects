@@ -10,21 +10,34 @@ public class Reflection : Activity
 
     public Reflection(string name, string description, int timeDuration) : base(name, description, timeDuration)
     {
-        _questions = new List<string>();
-        _randomPrompts = new List<string>();
+        _randomPrompts = new List<string>()
+        {
+        "Think of a time when you helped someone out of selflessness.",
+        "Think of a time when you achieved something difficult you have been trying to achieve for a while.",
+        "Think of a time when you faced a challenge or a difficult situation despite being broken.",
+        "Think of a time when you had to make a hard decision.",
+        "Think of a time when you stepped out of your comfort zone (new experiences, new abilities, etc)."
+        };
+
+         _questions = new List<string>()
+        {
+            "What motivated you to take action, even when it was difficult or uncomfortable?",
+            "What obstacles did you face, and how did you overcome them?",
+            "How did the experience change the way you see yourself or the world?",
+            "What lesson did you learn that still stays with you today?",
+            "How did that moment shape your future choices, attitude, or path?"
+        };
+        
 
     }
 
     public void RunReflectionActivity()
     {
-
-    }
-
-    public string GetQuestions()
-    {
-        Random aRandomQuestion = new Random();
-        int index = aRandomQuestion.Next(_questions.Count);
-        return _questions[index];
+        DisplayStartingMessage();
+        GetRandomPrompt();
+        GetQuestions();
+        DisplayEndingMessage();
+        
     }
 
     public string GetRandomPrompt()
@@ -32,6 +45,13 @@ public class Reflection : Activity
         Random aRandomPrompt = new Random();
         int index2 = aRandomPrompt.Next(_randomPrompts.Count);
         return _randomPrompts[index2];
+    }
+
+    public string GetQuestions()
+    {
+        Random aRandomQuestion = new Random();
+        int index = aRandomQuestion.Next(_questions.Count);
+        return _questions[index];
     }
 
     public void DisplayPrompt()
