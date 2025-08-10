@@ -54,7 +54,7 @@ public class Reflection : Activity
             Console.WriteLine("\nConsider this prompt:");
             string aRandomPrompt = GetRandomPrompt();
             Console.WriteLine($"\n--->{aRandomPrompt}<---\n");
-            Console.WriteLine("When you have something in mind, press 'enter' to continue");
+            Console.WriteLine("Press 'enter' to continue once you have typed according to the prompt.");
             Console.ReadLine();
 
             foreach (string question in _questions)

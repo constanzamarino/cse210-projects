@@ -33,14 +33,14 @@ public class Listing : Activity
     {
         DisplayStartingMessage();
         int sessionTime3 = AskDuration();
-        
+
         string prompt = _prompts[new Random().Next(_prompts.Count)];
 
 
         DateTime startTime = DateTime.Now;
         Console.Write("\nIt begins in: ");
         ShowCountDown(5);
-        Console.WriteLine($"\nType as many responses as you can to the following prompt:\n -- {prompt} --\n");
+        Console.WriteLine($"\nType as many responses as you can according to this prompt:\n -- {prompt} --\n");
 
         while ((DateTime.Now - startTime).TotalSeconds < _timeDuration)
         {
