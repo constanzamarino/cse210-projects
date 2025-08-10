@@ -111,30 +111,12 @@ public class Reflection : Activity
             Console.WriteLine("No reflection responses to save.");
             return;
         }
-        Console.WriteLine("Enter the name of your file to save the Reflection Activity: ");
+        userFile.WriteLine("Enter the name of your file to save the Reflection Activity: ");
         string filePath = Console.ReadLine();
 
         using (StreamWriter userFile = new StreamWriter(filePath, append: true))
         {
             Console.WriteLine($"--- Reflection Activity ({DateTime.Now}) ---");
-
-            userFile.WriteLine("Questions:");
-
-            foreach (string question in _questions)
-            {
-                userFile.WriteLine(question);
-            }
-
-            userFile.WriteLine();
-
-            userFile.WriteLine("Prompts");
-
-            foreach (string aRandomPrompt in _randomPrompts)
-            {
-                userFile.WriteLine(aRandomPrompt);
-            }
-
-            userFile.WriteLine();
 
             userFile.WriteLine("Answers:");
             foreach (string answer in _userAnswers)
