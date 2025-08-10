@@ -27,7 +27,7 @@ public class Activity
 
     public void DisplayEndingMessage()
     {
-        Console.WriteLine($"\nWell done!\nYou have completed it in {_timeDuration} seconds!");
+        Console.WriteLine($"\nGood job!\nYou have completed it in {_timeDuration} seconds!");
     }
 
     public int AskDuration()
