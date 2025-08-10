@@ -1,5 +1,5 @@
 using System;
-using System.Threading.Channels;
+using System.Collections.Generic;
 using System.IO;
 
 public class Reflection : Activity
@@ -8,18 +8,24 @@ public class Reflection : Activity
 
     private List<string> _randomPrompts;
 
+    private List<string> _userAnswers;
+
+
     public Reflection(string name, string description, int timeDuration) : base(name, description, timeDuration)
     {
+        _name = "\n***Reflection Activity***";
+        _description = "\nThis activity will help you reflect on times in your life when you have shown strength and resilience. This will help you recognize the power you have and how you can use it in other aspects of your life.";
+
         _randomPrompts = new List<string>()
         {
-        "Think of a time when you helped someone out of selflessness.",
-        "Think of a time when you achieved something difficult you have been trying to achieve for a while.",
-        "Think of a time when you faced a challenge or a difficult situation despite being broken.",
-        "Think of a time when you had to make a hard decision.",
-        "Think of a time when you stepped out of your comfort zone (new experiences, new abilities, etc)."
+        "Think of a time when you helped someone out of selflessness",
+        "Think of a time when you achieved something difficult you have been trying to achieve for a while",
+        "Think of a time when you faced a challenge or a difficult situation despite being broken",
+        "Think of a time when you had to make a hard decision",
+        "Think of a time when you stepped out of your comfort zone (new experiences, new abilities, etc)"
         };
 
-         _questions = new List<string>()
+        _questions = new List<string>()
         {
             "What motivated you to take action, even when it was difficult or uncomfortable?",
             "What obstacles did you face, and how did you overcome them?",
@@ -27,17 +33,44 @@ public class Reflection : Activity
             "What lesson did you learn that still stays with you today?",
             "How did that moment shape your future choices, attitude, or path?"
         };
-        
+
+        _userAnswers = new List<string>();
 
     }
 
     public void RunReflectionActivity()
     {
+
         DisplayStartingMessage();
-        GetRandomPrompt();
-        GetQuestions();
+        int sessionTime2 = AskDuration();
+
+        Console.WriteLine("Get ready...");
+        ShowTheSpinner(5);
+
+        int lapse = 0;
+
+        while (lapse < _timeDuration)
+        {
+            Console.WriteLine("\nConsider this prompt:");
+            string aRandomPrompt = GetRandomPrompt();
+            Console.WriteLine($"\n--->{aRandomPrompt}<---\n");
+            Console.WriteLine("When you have something in mind, press 'enter' to continue");
+            Console.ReadLine();
+
+            foreach (string question in _questions)
+            {
+                if (lapse >= _timeDuration) break;
+
+                Console.Write(question);
+                string user_answers = Console.ReadLine();
+                _userAnswers.Add(user_answers);
+
+                ShowCountDown(5);
+                lapse += 5;
+            }
+        }
         DisplayEndingMessage();
-        
+        DisplayActivityDate();
     }
 
     public string GetRandomPrompt()
@@ -56,38 +89,62 @@ public class Reflection : Activity
 
     public void DisplayPrompt()
     {
-        Console.WriteLine(_randomPrompts);
+        foreach (var prompt in _randomPrompts)
+        {
+            Console.WriteLine($"{prompt}");
+        }
+
     }
 
     public void DisplayQuestions()
     {
-        Console.WriteLine(_questions);
+        foreach (var question in _questions)
+        {
+            Console.WriteLine(question);
+        }
     }
 
     public void SaveReflectionActivity()
     {
-        Console.WriteLine("Enter the name of your file to save the Reflection Activity: ");
-        string userFilename = Console.ReadLine();
-
-        using (StreamWriter userFile = new StreamWriter(userFilename))
+        if (_userAnswers.Count == 0)
         {
-            DateTime activityDate = new DateTime();
-            userFile.WriteLine("Date: " + activityDate.ToString("yyyy-MM-dd HH:mm"));
+            Console.WriteLine("No reflection responses to save.");
+            return;
+        }
+        Console.WriteLine("Enter the name of your file to save the Reflection Activity: ");
+        string filePath = Console.ReadLine();
+
+        using (StreamWriter userFile = new StreamWriter(filePath, append: true))
+        {
+            Console.WriteLine($"--- Reflection Activity ({DateTime.Now}) ---");
+
             userFile.WriteLine("Questions:");
-            foreach (string questions in _questions)
+
+            foreach (string question in _questions)
             {
-                userFile.Write(questions);
+                userFile.WriteLine(question);
             }
 
-            userFile.WriteLine("Prompts:");
+            userFile.WriteLine();
+
+            userFile.WriteLine("Prompts");
+
             foreach (string aRandomPrompt in _randomPrompts)
             {
-                userFile.Write(aRandomPrompt);
+                userFile.WriteLine(aRandomPrompt);
             }
-     
-            
+
+            userFile.WriteLine();
+
+            userFile.WriteLine("Answers:");
+            foreach (string answer in _userAnswers)
+            {
+                userFile.WriteLine(answer);
+            }
+
+            userFile.WriteLine();
         }
+
+        Console.WriteLine($"Reflection Activity has been saved in {filePath}");
     }
-
-
 }

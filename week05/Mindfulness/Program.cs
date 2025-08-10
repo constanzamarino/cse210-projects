@@ -2,9 +2,6 @@
 // because Breathing doesn't have it, since there's no information to save. I added also the date of each activity the user does.
 
 using System;
-using System.Threading.Channels;
-using System.Collections.Generic;
-
 class Program
 {
     static void Main(string[] args)
@@ -18,7 +15,7 @@ class Program
         {
             Breathing breathingActivity = new Breathing("", "", 0);
             Reflection reflectionActivity = new Reflection("", "", 0);
-            Listing listingActivity = new Listing("", "", 0, 0);
+            Listing listingActivity = new Listing("","", 60, 0);
             
 
             Console.WriteLine("Menu:");
@@ -26,32 +23,21 @@ class Program
             Console.WriteLine("Please, select an option from the menu by entering its corresponding number:");
 
             string user_input = Console.ReadLine();
-            if (int.TryParse(user_input, out user_choice))
-            {
-                Console.WriteLine("Invalid input. Please, select an option from the menu by entering its corresponding number: ");
-            }
+            user_choice = int.Parse(user_input);
 
             if (user_choice == 1)
             {
                 breathingActivity.RunBreathingActivity();
-                breathingActivity.GetActivityDate();
-
             }
 
             else if (user_choice == 2)
-            {
-                reflectionActivity.RunReflectionActivity();
-                reflectionActivity.DisplayActivityDate();
-                
-
+            { 
+                reflectionActivity.RunReflectionActivity(); 
             }
 
             else if (user_choice == 3)
             {
                 listingActivity.RunListingActivity();
-                listingActivity.DisplayActivityDate();
-                
-                
             }
 
             else if (user_choice == 4)

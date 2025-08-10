@@ -1,6 +1,5 @@
 using System;
-
-using System.Threading.Channels;
+using System.Threading;
 
 public class Activity
 {
@@ -18,61 +17,67 @@ public class Activity
 
     public void Display()
     {
-        Console.WriteLine($"{_name}\n{_description}");
+        Console.WriteLine($"{_name}\n{_description}\n");
     }
 
     public void DisplayStartingMessage()
     {
-        Console.WriteLine("");
+        Console.WriteLine($"{_name}\n{_description}\n");
     }
 
     public void DisplayEndingMessage()
     {
-        Console.WriteLine("");
+        Console.WriteLine($"\nWell done!\nYou have completed it in {_timeDuration} seconds!");
     }
 
+    public int AskDuration()
+    {
+        Console.WriteLine("\nIn how long do you want to spend in this session? (in seconds)");
+        if (int.TryParse(Console.ReadLine(), out int secs) && secs > 0)
+        {
+            _timeDuration = secs;
+            return secs;
+        }
+         Console.WriteLine("Invalid input. Using default 30 seconds.");
+        _timeDuration = 30;
+        return 30;
+    }
     public void ShowCountDown(int timeInSeconds)
     {
-        Console.WriteLine("In how long do you want to spend in this session? (Seconds)");
-        string user_time_choice = Console.ReadLine();
-        timeInSeconds = int.Parse(user_time_choice);
 
-        for (int i = 5; 1 > 0; i--)
+        for (int i = timeInSeconds; i > 0; i--)
         {
-
-            Thread.Sleep(timeInSeconds);
+            Console.Write(i + " ");
+            Thread.Sleep(1000);
         }
-
+        Console.WriteLine();
 
     }
 
     public void ShowTheSpinner(int timeInSeconds)
     {
-        List<string> _animationSpinner = new List<string>();
-        _animationSpinner.Add("||");
-        _animationSpinner.Add("//");
-        _animationSpinner.Add("━");
-        _animationSpinner.Add("||");
-        _animationSpinner.Add("//");
-        _animationSpinner.Add("━");
-        _animationSpinner.Add("\\");
-
-        foreach (string s in _animationSpinner)
+        List<string> _animationSpinner = new List<string>()
         {
-            Console.WriteLine(s);
-            Thread.Sleep(timeInSeconds);
+            "|", "/", "-", "\\"
+        };
+
+        DateTime endTime = DateTime.Now.AddSeconds(timeInSeconds);
+        int index = 0;
+
+        while (DateTime.Now < endTime)
+        {
+            Console.Write(_animationSpinner[index]);
+            Thread.Sleep(600);
+            Console.Write("\b");
+            index = (index + 1) % _animationSpinner.Count;
         }
-
-    }
-    public DateTime GetActivityDate()
-    {
-        return DateTime.Now;
-
+        Console.Write(" ");
+        Console.Write("\b");    
     }
 
     public void DisplayActivityDate()
     {
-        Console.WriteLine(DateTime.Now);
+        Console.WriteLine(DateTime.Now.ToString("\nyyyy-MM-dd - HH:mm\n"));
     }
 
         

@@ -1,20 +1,40 @@
 using System;
-using System.Threading.Channels;
+
 
 public class Breathing : Activity
 {
     public Breathing(string name, string description, int timeDuration) : base(name, description, timeDuration)
     {
-        _name = "Breathing Activity";
-        _description = "This activity will help you relax by walking your through breathing in and out slowly. Clear your mind and focus on your breathing.";
-        _timeDuration = 0;
+        _name = "\n***Breathing activity***";
+        _description = "\nThis activity will help you relax by walking your through breathing in and out slowly. Clear your mind and focus on your breathing.";
     }
 
     public void RunBreathingActivity()
     {
         DisplayStartingMessage();
-        DisplayEndingMessage();
+        int sessionTime1 = AskDuration();
 
+        Console.WriteLine("Get ready...");
+        ShowTheSpinner(2);
+
+        int lapse = 0;
+
+        while (lapse < _timeDuration)
+        {
+            Console.Write("Breathe in...");
+            ShowCountDown(4);
+            lapse += 4;
+
+            if (lapse >= _timeDuration) break;
+
+            Console.Write("Breathe out... ");
+            ShowCountDown(4);
+            lapse += 4;
+
+        }
+
+        DisplayEndingMessage();
+        DisplayActivityDate();
 
     }
 }

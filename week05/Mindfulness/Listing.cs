@@ -1,14 +1,19 @@
 using System;
-using System.Threading.Channels;
+using System.Threading;
 using System.IO;
 
 public class Listing : Activity
 {
-    private int _count;
     private List<string> _prompts;
+
+    List<string> _userResponses;
 
     public Listing(string name, string description, int timeDuration, int count) : base(name, description, timeDuration)
     {
+        _name = "\n***Listing Activity***";
+        _description = "\nThis activity will help you reflect on the good things in your life by having you list as many things as you can in a certain area.";
+
+
         _prompts = new List<string>()
         {
             "What fears have you overcome as you've grown or changed?",
@@ -20,36 +25,67 @@ public class Listing : Activity
             "What do you like to do in your free time?",
             "Which are some jobs you would love to do?"
         };
-        _count = count;
+
+        _userResponses = new List<string>();
     }
 
     public void RunListingActivity()
     {
         DisplayStartingMessage();
+        int sessionTime3 = AskDuration();
+        
+        string prompt = _prompts[new Random().Next(_prompts.Count)];
+
+
+        DateTime startTime = DateTime.Now;
+        Console.Write("\nIt begins in: ");
+        ShowCountDown(5);
+        Console.WriteLine($"\nType as many responses as you can to the following prompt:\n -- {prompt} --\n");
+
+        while ((DateTime.Now - startTime).TotalSeconds < _timeDuration)
+        {
+            string response = Console.ReadLine();
+            _userResponses.Add(response);
+
+        }
+        Console.WriteLine($"\nYou listed {_userResponses.Count} items.\n");
         DisplayEndingMessage();
+        DisplayActivityDate();
     }
 
     public void SaveListingActivity()
     {
-        Console.WriteLine("Enter the name of your file to save your Listing Activity: ");
-        string userFilename2 = Console.ReadLine();
-
-        using (StreamWriter userFile2 = new StreamWriter(userFilename2))
+        if (_userResponses.Count == 0)
         {
-            DateTime activityDate2 = new DateTime();
-            userFile2.WriteLine("Date " + activityDate2.ToString("yyyy-MM-dd HH:mm"));
-            Console.WriteLine("Prompts:");
-            foreach (string prompt in _prompts)
+            Console.WriteLine("No listing responses to save.");
+            return;
+        }
+
+        Console.WriteLine("Enter the name of your file to save your Listing Activity: ");
+        string filePath2 = Console.ReadLine();
+
+        using (StreamWriter userFile2 = new StreamWriter(filePath2, append: true))
+        {
+            userFile2.WriteLine($"--- Listing Activity ({DateTime.Now}) ---");
+
+            Console.WriteLine("Responses:");
+            foreach (string response in _userResponses)
             {
-                Console.WriteLine(prompt);
+                userFile2.WriteLine(response);
             }
+            userFile2.WriteLine($"Listing Activity has been saved successfully in {filePath2}.");
+
         }
 
     }
-    
-     public List<string> GetListFromUser()
+
+    public List<string> GetPromptsList()
     {
         return _prompts;
+    }
+     public List<string> GetListFromUser()
+    {
+        return _userResponses;
     }
 
 
