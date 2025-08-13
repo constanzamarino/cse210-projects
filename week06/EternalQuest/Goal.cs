@@ -1,11 +1,11 @@
 using System;
 
-public class Goal
+public abstract class Goal
 {
     protected string _goalName;
     protected string _goalDescription;
 
-    protected int _points;
+    public int _points;
 
     public Goal(string goalName, string goalDescription, int points)
     {
@@ -14,20 +14,11 @@ public class Goal
         _points = points;
     }
 
-    public void RecordEvent()
-    {
+    public abstract void RecordEvent();
+    public abstract bool IsGoalCompleted();
 
-    }
-    public bool IsGoalCompleted()
-    {
+    public abstract string GetDetails();
 
-    }
-
-    public string GetDetails()
-    {
-
-    }
-
-    public string GetRepresentationString();
+    public  abstract string GetRepresentation();
 
 }

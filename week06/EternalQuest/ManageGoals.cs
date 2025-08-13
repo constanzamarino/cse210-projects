@@ -1,28 +1,35 @@
 using System;
 using System.IO;
+using System.Collections.Generic;
 
-public abstract class ManageGoals : Goal
+public class ManageGoals : Goal
 {
     private List<Goal> _goals = new List<Goal>();
-    private int _score;
+    public int _score;
 
     public ManageGoals(string goalName, string goalDescription, int points, int score) : base(goalName, goalDescription, points)
     {
-       
+
         _score = score;
     }
 
     public void DisplayPlayerData()
     {
-        Console.WriteLine($"{_goalName}\n{_goalDescription}\n{_points}");
+        Console.WriteLine($"Total score: {_score}");
     }
 
     public void ListGoals()
     {
         Console.WriteLine("\nYour goals:\n");
-        foreach (Goal goal in _goals)
+        if (_goals.Count == 0)
         {
-            Console.WriteLine($"{goal}");
+            Console.WriteLine("No goals entered yet");
+            return;
+        }
+
+        for (int i = 0; i < _goals.Count; i++)
+        {
+            Console.WriteLine($"{i + 1}.{_goals[i].GetDetails()}");
         }
     }
 
@@ -79,7 +86,28 @@ public abstract class ManageGoals : Goal
 
     public override void RecordEvent()
     {
-        Console.WriteLine("");
+        Console.WriteLine("Your goals:");
+        ListGoals();
+        int choice = int.Parse(Console.ReadLine()) - 1;
+
+        if (choice >= 0 && choice < _goals.Count)
+        {
+            _goals[choice].RecordEvent();
+
+            if (_goals[choice].IsGoalCompleted())
+            {
+                _score += _goals[choice]._points;
+            }
+
+            Console.WriteLine("Event recorded!");
+
+
+        }
+        else
+        {
+            Console.WriteLine("Invalid choice.");
+        }
+
     }
 
     public void SaveGoal()
@@ -100,29 +128,63 @@ public abstract class ManageGoals : Goal
     }
 
     public void LoadGoal()
+
     {
+
         Console.WriteLine("Enter the name of you file to load your goals: ");
-
-        int _score = 0;
-        string _scoreGoal = _score.ToString();
-
         string filename = Console.ReadLine();
 
-        string[] _goalLines = System.IO.File.ReadAllLines(filename);
-
-        
-        foreach (string _goalLine in _goalLines)
+        if (!File.Exists(filename))
         {
-            string[] _goalLineParts = _goalLine.Split(",");
-
-            string _goalName = _goalLineParts[0];
-            string _goalDescription = _goalLineParts[1];
-            _scoreGoal = _goalLineParts[2];
-
+            Console.WriteLine("File not found.");
+            return;
         }
 
+        string[] _goalLines = System.IO.File.ReadAllLines(filename);
+        _score = int.Parse(_goalLines[0]);
+        _goals.Clear();
 
+
+        for (int i = 0; i < _goalLines.Length; i++)
+        {
+            string[] _goalLineParts = _goalLines[i].Split(",");
+
+            string _type = _goalLineParts[0];
+            string _goalName = _goalLineParts[1];
+            string _goalDescription = _goalLineParts[2];
+            int _points = int.Parse(_goalLines[3]);
+
+            if (_type == "SimpleGoal")
+            {
+                _goals.Add(new SimpleGoal(_goalName, _goalDescription, _points));
+
+            }
+            else if (_type == "EternalGoal")
+            {
+                _goals.Add(new EternalGoal(_goalName, _goalDescription, _points));
+            }
+            else if (_type == "CheckListGoal")
+            {
+                int _target = int.Parse(_goalLineParts[4]);
+                int _extraBonus = int.Parse(_goalLineParts[5]);
+                _goals.Add(new CheckListGoal(_goalName, _goalDescription, _points, _target, _extraBonus));
+            }
+        }
 
     }
 
+    public override bool IsGoalCompleted()
+    {
+        throw new NotImplementedException();
+    }
+
+    public override string GetDetails()
+    {
+        throw new NotImplementedException();
+    }
+
+    public override string GetRepresentation()
+    {
+        throw new NotImplementedException();
+    }
 }

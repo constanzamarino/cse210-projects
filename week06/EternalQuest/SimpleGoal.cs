@@ -1,30 +1,43 @@
 using System;
 
-public class SimpleGoal : Goal
+public  class SimpleGoal : Goal
 {
-    private bool goalIsCompleted;
+    private bool _goalIsCompleted;
     public SimpleGoal(string goalName, string goalDescription, int points) : base(goalName, goalDescription, points)
     {
         _goalName = "";
-       _goalDescription = "";
+        _goalDescription = "";
         _points = 0;
     }
 
-    public void RecordEvent()
+    public override void RecordEvent()
     {
-
+        _goalIsCompleted = true;
     }
 
-    public bool IsGoalCompleted()
+    public override bool IsGoalCompleted()
     {
-
+        return _goalIsCompleted;  
     }
 
-    public string GetRepresentationString()
+    public override string GetRepresentation()
     {
+        return $"Simple Goal: {_goalName} {_goalDescription} {_points}\n";
+    }
+
+    public override string GetDetails()
+    {
+        if (_goalIsCompleted)
+        {
+            return "[X]" + _goalName + "(" + _goalDescription + ")";
+        }
+
+        else
+        {
+            return "[ ]" + _goalName + "("+ _goalDescription +")";
+        }
+        
+        
        
     }
-
-
-
 }
