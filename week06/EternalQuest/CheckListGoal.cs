@@ -16,7 +16,7 @@ public class CheckListGoal : Goal
     }
     public override void RecordEvent()
     {
-
+        //Add code
     }
 
     public override bool IsGoalCompleted()
@@ -25,12 +25,19 @@ public class CheckListGoal : Goal
     }
     public override string GetDetails()
     {
+        if (_amountGoalsCompleted >= _target)
+        {
+            return "[X]" + _goalName + "(" + _goalDescription + ")" + $"Currently Comppleted {_amountGoalsCompleted}/{_target}";
+        }
+        else
+        {
+            return "[ ]" + _goalName + "(" + _goalDescription + ")" + $"Currently Comppleted {_amountGoalsCompleted}/{_target}";
+        }
         
     }
     public override string GetRepresentation()
     {
         return $"CheckList Goal: {_goalName} {_goalDescription} {_points}";
     }
-
 
 }

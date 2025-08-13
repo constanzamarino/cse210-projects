@@ -2,7 +2,7 @@ using System;
 
 public class EternalGoal : Goal
 {
-    private bool _goalIsCompleted;
+    
     public EternalGoal(string goalName, string goalDescription, int points) : base(goalName, goalDescription, points)
     {
         _goalName = "";
@@ -12,12 +12,12 @@ public class EternalGoal : Goal
     }
     public override void RecordEvent()
     {
-        
+        //Add code
     }
 
     public override bool IsGoalCompleted()
     {
-        return _goalIsCompleted;
+        return false;
     }
 
     public override string GetRepresentation()
@@ -27,17 +27,7 @@ public class EternalGoal : Goal
 
     public override string GetDetails()
     {
-        if (_goalIsCompleted)
-        {
-            return $"[X]" + _goalName + "(" + _goalDescription + ")";
-        }
-
-        else
-        {
-            return $"[ ]" + _goalName + "(" + _goalDescription + ")";
-        }
-        
-        
+        return $"[ ]" + _goalName + "(" + _goalDescription + ")"; 
       
     }
 }
