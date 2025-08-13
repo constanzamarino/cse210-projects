@@ -4,6 +4,8 @@ class Program
 {
     static void Main(string[] args)
     {
+        
+        
         Console.WriteLine("Welcome to the Eternal Quest Program!");
         Console.WriteLine("Select an option from the following menu:");
         string user_input = Console.ReadLine();
