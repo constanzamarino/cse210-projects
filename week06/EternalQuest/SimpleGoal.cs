@@ -3,11 +3,10 @@ using System;
 public  class SimpleGoal : Goal
 {
     private bool _goalIsCompleted;
-    public SimpleGoal(string goalName, string goalDescription, int points) : base(goalName, goalDescription, points)
+    public SimpleGoal(string goalName, string goalDescription, int points) 
+    : base(goalName, goalDescription, points)
     {
-        _goalName = "";
-        _goalDescription = "";
-        _points = 0;
+        _goalIsCompleted = false;
     }
 
     public override void RecordEvent()
@@ -22,19 +21,19 @@ public  class SimpleGoal : Goal
 
     public override string GetRepresentation()
     {
-        return $"Simple Goal: {_goalName} {_goalDescription} {_points}\n";
+        return $"Simple Goal: {_goalName}, {_goalDescription}, {_points}, {_goalIsCompleted}";
     }
 
     public override string GetDetails()
     {
         if (_goalIsCompleted)
         {
-            return "[X]" + _goalName + "(" + _goalDescription + ")";
+            return $"[X] { _goalName} + ({ _goalDescription})";
         }
 
         else
         {
-            return "[ ]" + _goalName + "("+ _goalDescription +")";
+            return $"[ ] { _goalName} + ({ _goalDescription})";
         }
         
         

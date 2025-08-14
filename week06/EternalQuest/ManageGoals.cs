@@ -10,7 +10,7 @@ public class ManageGoals : Goal
     public ManageGoals(string goalName, string goalDescription, int points, int score) : base(goalName, goalDescription, points)
     {
 
-        _score = score;
+        _score = 0;
     }
 
     public void DisplayPlayerData()
@@ -65,7 +65,7 @@ public class ManageGoals : Goal
 
         else if (userchoice2 == 3)
         {
-            Console.Write("Enter the target count");
+            Console.Write("Enter the target count: ");
             int _target = int.Parse(Console.ReadLine());
 
             Console.Write("Enter the bonus points:");
@@ -76,7 +76,7 @@ public class ManageGoals : Goal
 
         else
         {
-            Console.WriteLine("");
+            Console.WriteLine("Invalid choice.");
             return;
         }
 
@@ -92,16 +92,17 @@ public class ManageGoals : Goal
 
         if (choice >= 0 && choice < _goals.Count)
         {
-            _goals[choice].RecordEvent();
+            Goal selectedGoal = _goals[choice];
+            selectedGoal.RecordEvent();
 
-            if (_goals[choice].IsGoalCompleted())
+            _score += selectedGoal._points;
+
+            if (selectedGoal is CheckListGoal checklist && checklist.IsGoalCompleted())
             {
-                _score += _goals[choice]._points;
+                _score += checklist.GetBouns();
             }
 
             Console.WriteLine("Event recorded!");
-
-
         }
         else
         {
@@ -119,7 +120,7 @@ public class ManageGoals : Goal
         {
             foreach (Goal goal in _goals)
             {
-                userFile.WriteLine(goal);
+                userFile.WriteLine(goal.GetRepresentation());
             }
         }
 
@@ -156,19 +157,37 @@ public class ManageGoals : Goal
 
             if (_type == "SimpleGoal")
             {
-                _goals.Add(new SimpleGoal(_goalName, _goalDescription, _points));
+                bool completed = bool.Parse(_goalLines[4]);
+                SimpleGoal simpleGoal = new SimpleGoal(_goalName, _goalDescription, _points);
+
+                if (completed)
+                {
+                    simpleGoal.RecordEvent();
+                }
+                _goals.Add(simpleGoal);
+
 
             }
             else if (_type == "EternalGoal")
             {
+
                 _goals.Add(new EternalGoal(_goalName, _goalDescription, _points));
             }
             else if (_type == "CheckListGoal")
             {
                 int _target = int.Parse(_goalLineParts[4]);
                 int _extraBonus = int.Parse(_goalLineParts[5]);
-                _goals.Add(new CheckListGoal(_goalName, _goalDescription, _points, _target, _extraBonus));
+                int _completedCount = int.Parse(_goalLineParts[6]);
+
+                CheckListGoal checkListGoal = new CheckListGoal(_goalName, _goalDescription, _points, _target, _extraBonus);
+                for (int c = 0; c < _completedCount; c++)
+                {
+                    checkListGoal.RecordEvent();
+                }
+
             }
+
+            Console.WriteLine("Your goals have been loaded successfully!");
         }
 
     }

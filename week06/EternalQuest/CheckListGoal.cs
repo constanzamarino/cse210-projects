@@ -6,38 +6,39 @@ public class CheckListGoal : Goal
     protected int _target;
 
     protected int _extraBonus;
-    public CheckListGoal(string goalName, string goalDescription, int points, int target, int extraBonus) : base(goalName, goalDescription, points)
+    public CheckListGoal(string goalName, string goalDescription, int points, int target, int extraBonus)
+    : base(goalName, goalDescription, points)
     {
-        _goalName = "";
-        _goalDescription = "";
-        _points = 0;
+        _amountGoalsCompleted = 0;
         _target = target;
         _extraBonus = extraBonus;
     }
     public override void RecordEvent()
     {
-        //Add code
+        _amountGoalsCompleted++;
     }
 
     public override bool IsGoalCompleted()
     {
-        return true;
+        return _amountGoalsCompleted >= _target;
     }
     public override string GetDetails()
     {
-        if (_amountGoalsCompleted >= _target)
-        {
-            return "[X]" + _goalName + "(" + _goalDescription + ")" + $"Currently Comppleted {_amountGoalsCompleted}/{_target}";
-        }
-        else
-        {
-            return "[ ]" + _goalName + "(" + _goalDescription + ")" + $"Currently Comppleted {_amountGoalsCompleted}/{_target}";
-        }
-        
+        string _checkingMark = IsGoalCompleted() ? "[X]" : "[ ]";
+
+        return $"{_checkingMark} {_goalName} ( {_goalDescription} ) --> Currently Completed {_amountGoalsCompleted}/{_target}";
+
+
+
     }
     public override string GetRepresentation()
     {
-        return $"CheckList Goal: {_goalName} {_goalDescription} {_points}";
+        return $"CheckList Goal, {_goalName}, {_goalDescription}, {_points}, {_target}, {_extraBonus}, {_amountGoalsCompleted}";
+    }
+
+    public int GetBouns()
+    {
+        return _extraBonus;
     }
 
 }
