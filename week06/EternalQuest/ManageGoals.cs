@@ -10,7 +10,7 @@ public class ManageGoals : Goal
     public ManageGoals(string goalName, string goalDescription, int points, int score) : base(goalName, goalDescription, points)
     {
 
-        _score = 0;
+        _score = score;
     }
 
     public void DisplayPlayerData()
