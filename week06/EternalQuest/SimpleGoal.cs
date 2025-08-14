@@ -28,12 +28,12 @@ public  class SimpleGoal : Goal
     {
         if (_goalIsCompleted)
         {
-            return $"[X] { _goalName} + ({ _goalDescription})";
+            return $"[X] { _goalName} ({ _goalDescription})";
         }
 
         else
         {
-            return $"[ ] { _goalName} + ({ _goalDescription})";
+            return $"[ ] { _goalName} ({ _goalDescription})";
         }
         
         

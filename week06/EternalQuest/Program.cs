@@ -4,7 +4,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        ManageGoals goalManager = new ManageGoals("", "", 0, 0);
+        ManageGoals goalManager = new ManageGoals();
         int user_choice = 0;
 
         Console.WriteLine("Welcome to the Eternal Quest Program!\n");

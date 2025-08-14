@@ -2,15 +2,15 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 
-public class ManageGoals : Goal
+public class ManageGoals 
 {
     private List<Goal> _goals = new List<Goal>();
     public int _score;
 
-    public ManageGoals(string goalName, string goalDescription, int points, int score) : base(goalName, goalDescription, points)
+    public ManageGoals() 
     {
 
-        _score = score;
+        _score = 0;
     }
 
     public void DisplayPlayerData()
@@ -46,8 +46,8 @@ public class ManageGoals : Goal
         string _goalDescription = Console.ReadLine();
 
         Console.Write("Enter the points you will earn if you complete it: ");
-        int _points = 0;
-        string _pointsInTxt = _points.ToString();
+        int _points = int.Parse(Console.ReadLine());
+       
 
 
         Goal newGoal = null;
@@ -84,7 +84,7 @@ public class ManageGoals : Goal
 
     }
 
-    public override void RecordEvent()
+    public void RecordEvent()
     {
         Console.WriteLine("Your goals:");
         ListGoals();
@@ -146,7 +146,7 @@ public class ManageGoals : Goal
         _goals.Clear();
 
 
-        for (int i = 0; i < _goalLines.Length; i++)
+        for (int i = 1; i < _goalLines.Length; i++)
         {
             string[] _goalLineParts = _goalLines[i].Split(",");
 
@@ -155,9 +155,9 @@ public class ManageGoals : Goal
             string _goalDescription = _goalLineParts[2];
             int _points = int.Parse(_goalLines[3]);
 
-            if (_type == "SimpleGoal")
+            if (_type == "Simple Goal")
             {
-                bool completed = bool.Parse(_goalLines[4]);
+                bool completed = bool.Parse(_goalLineParts[4]);
                 SimpleGoal simpleGoal = new SimpleGoal(_goalName, _goalDescription, _points);
 
                 if (completed)
@@ -168,12 +168,12 @@ public class ManageGoals : Goal
 
 
             }
-            else if (_type == "EternalGoal")
+            else if (_type == "Eternal Goal")
             {
 
                 _goals.Add(new EternalGoal(_goalName, _goalDescription, _points));
             }
-            else if (_type == "CheckListGoal")
+            else if (_type == "CheckList Goal")
             {
                 int _target = int.Parse(_goalLineParts[4]);
                 int _extraBonus = int.Parse(_goalLineParts[5]);
@@ -184,6 +184,7 @@ public class ManageGoals : Goal
                 {
                     checkListGoal.RecordEvent();
                 }
+                _goals.Add(checkListGoal);
 
             }
 
@@ -192,18 +193,4 @@ public class ManageGoals : Goal
 
     }
 
-    public override bool IsGoalCompleted()
-    {
-        throw new NotImplementedException();
-    }
-
-    public override string GetDetails()
-    {
-        throw new NotImplementedException();
-    }
-
-    public override string GetRepresentation()
-    {
-        throw new NotImplementedException();
-    }
 }
