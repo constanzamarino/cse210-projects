@@ -3,8 +3,8 @@ using System;
 public class Running : Activity
 {
     private int _runningLaps;
-    public Running(string date, string activityName, int timeInMinutes, int runningLaps, float distanceInKm, float speed, float pace)
-    : base(date, activityName, timeInMinutes, distanceInKm, speed, pace)
+    public Running(string date, string activityName, int timeInMinutes, int runningLaps)
+    : base(date, activityName, timeInMinutes)
     {
         _runningLaps = runningLaps;
 
@@ -12,20 +12,20 @@ public class Running : Activity
 
     public override float CalculateDistance()
     {
-        _distanceInKm = _runningLaps * 50 / 1000;
-        return _distanceInKm;
+        
+        return _runningLaps * 50 / 1000f;
     }
 
     public override float CalculateSpeed()
     {
-        _speed = _distanceInKm / _timeInMinutes * 60;
-        return _speed;
+         
+        return CalculateDistance() / GetTime() * 60f; 
     }
 
     public override float CalculatePace()
     {
-        _pace = _timeInMinutes / _distanceInKm;
-        return _pace;
+         
+        return GetTime() / CalculateDistance();
     }
 
 }

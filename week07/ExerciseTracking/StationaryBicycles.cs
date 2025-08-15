@@ -3,22 +3,21 @@ using System;
 public class StationaryBicycles : Activity
 {
     private int _cyclingLaps;
-    public StationaryBicycles(string date, string activityName, int timeInMinutes, int cyclingLaps, float distanceInKm, float speed, float pace)
-    : base(date, activityName, timeInMinutes, distanceInKm, speed, pace)
+    public StationaryBicycles(string date, string activityName, int timeInMinutes, int cyclingLaps)
+    : base(date, activityName, timeInMinutes)
     {
         _cyclingLaps = cyclingLaps;
     }
 
     public override float CalculateSpeed()
     {
-        _speed = 60 / _pace;
-        return _speed;
+        return 60 / CalculatePace();
     }
 
     public override float CalculatePace()
     {
-        _pace = 60 / _speed;
-        return _pace;
+
+        return 60 / CalculateSpeed();
     }
 
     public override float CalculateDistance()
