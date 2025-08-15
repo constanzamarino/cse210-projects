@@ -6,22 +6,15 @@ public abstract class Activity
 
     protected string _activityName;
     protected int _timeInMinutes;
-    protected float _speed;
-
-    protected float _pace;
-
-    protected float _distanceInKm;
+    
 
 
-    public Activity(string date, string activityName, int timeInMinutes, float speed, float pace, float distanceInKm)
+    public Activity(string date, string activityName, int timeInMinutes)
     {
         _date = date;
         _activityName = activityName;
         _timeInMinutes = timeInMinutes;
-        _speed = speed;
-        _pace = pace;
-        _distanceInKm = distanceInKm;
-
+      
     }
 
     public abstract float CalculateDistance();
@@ -30,16 +23,16 @@ public abstract class Activity
 
     public abstract float CalculatePace();
 
-
-    public string GetDate()
+    public int GetTime()
     {
-        DateTime _date = DateTime.Now;
-        string _dateOnly = _date.ToString("dd MM yyyy");
-        return _dateOnly;
+        return _timeInMinutes;
     }
     public string GetSummary()
     {
-        return $"{_dateOnly} {_activityName}{_timeInMinutes} - Distance: {_distanceInKm} km, Speed: {_speed} kph, Pace: {_pace} min per km";
+        float _distanceInKm = CalculateDistance();
+        float _speed = CalculateSpeed();
+        float _pace = CalculatePace();
+        return $"{_date} {_activityName} ({_timeInMinutes} min) - Distance: {_distanceInKm} km, Speed: {_speed} kph, Pace: {_pace} min per km";
     }
 
 }
