@@ -2,26 +2,27 @@ using System;
 
 public class StationaryBicycles : Activity
 {
-    private int _cyclingLaps;
-    public StationaryBicycles(string date, string activityName, int timeInMinutes, int cyclingLaps)
+    private int _speed;
+    public StationaryBicycles(string date, string activityName, int timeInMinutes, int speed)
     : base(date, activityName, timeInMinutes)
     {
-        _cyclingLaps = cyclingLaps;
+        _speed = speed;
     }
 
+    public override float CalculateDistance()
+    {
+        return _speed * GetTime() / 60f;
+    }
     public override float CalculateSpeed()
     {
-        return 60 / CalculatePace();
+        return _speed;
     }
 
     public override float CalculatePace()
     {
 
-        return 60 / CalculateSpeed();
+        return GetTime() / CalculateDistance();
     }
 
-    public override float CalculateDistance()
-    {
-        throw new NotImplementedException();
-    }
+    
 }

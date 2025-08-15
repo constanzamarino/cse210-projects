@@ -30,9 +30,9 @@ public abstract class Activity
     public string GetSummary()
     {
         float _distanceInKm = CalculateDistance();
-        float _speed = CalculateSpeed();
+        float _speed1 = CalculateSpeed();
         float _pace = CalculatePace();
-        return $"{_date} {_activityName} ({_timeInMinutes} min) - Distance: {_distanceInKm} km, Speed: {_speed} kph, Pace: {_pace} min per km";
+        return $"{_date} {_activityName} ({_timeInMinutes} min) - Distance: {_distanceInKm} km, Speed: {_speed1} kph, Pace: {_pace} min per km";
     }
 
 }
